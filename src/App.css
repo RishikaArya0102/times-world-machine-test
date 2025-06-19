@@ -5,3 +5,9 @@ input::placeholder{
    font-weight: 600; 
    font-size: 16px;
 }
+
+@media (min-width: 768px) {
+  .mt-md-custom {
+    margin-top: -2.75rem !important;
+  }
+}

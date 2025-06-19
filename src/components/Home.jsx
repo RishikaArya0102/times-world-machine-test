@@ -7,8 +7,8 @@ import slide2 from "../assets/slide2.jpeg";
 import slide3 from "../assets/slide3.jpeg";
 import slide4 from "../assets/slide4.jpeg";
 import bottomImg from "../assets/bottomimg.jpeg";
+import '../App.css';
 import { getCountryDetails, loadMore } from "../redux/countriesSlice";
-
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -42,97 +42,79 @@ const Home = () => {
         dispatch(getCountryDetails());
     }, [dispatch]);
 
-
     const visibleCountries = countryDetails.slice(0, displayedCount);
-    console.log("countryDetails", countryDetails);
 
     return (
         <>
-            <div className="flex w-full justify-center items-start">
-                <div className="flex w-[80%] flex-col justify-center items-center">
-                    <div className="flex w-full py-[25px] justify-between">
-                        <div className="w-[80%]">
-                            <p className="text-[#3D3D3D] text-[24px] font-bold">Countries</p>
+            <div className="d-flex w-100 justify-content-center align-items-start">
+                <div className="d-flex flex-column w-75 justify-content-center align-items-center">
+                    <div className="d-flex w-100 py-3 justify-content-between">
+                        <div className="w-75">
+                            <p className="text-dark fs-4 fw-bold">Countries</p>
                         </div>
-                        <div className="hidden md:flex w-[20%] justify-between">
-                            <div className="flex flex-col">
-                                <p className="font-bold text-[16px]">All</p>
-                                <div className="w-[42px] mt-[7px] h-[2px] bg-[#3E3E3E] rounded"></div>
+                        <div className="d-none d-md-flex w-25 justify-content-between">
+                            <div className="d-flex flex-column">
+                                <p className="fw-bold fs-6">All</p>
+                                <div className="bg-dark mt-1" style={{ width: '42px', height: '2px', borderRadius: '2px' }}></div>
                             </div>
-                            <p className="text-[#8B8B8B] text-[16px]">Asia</p>
-                            <p className="text-[#8B8B8B] text-[16px]">Europe</p>
+                            <p className="text-muted fs-6">Asia</p>
+                            <p className="text-muted fs-6">Europe</p>
                         </div>
-                        <div className="flex justify-center items-center md:hidden">
-                            <HiMenu className="h-8 w-8 cursor-pointer" onClick={onMenuClick} />
+                        <div className="d-flex d-md-none justify-content-center align-items-center">
+                            <HiMenu className="fs-2 cursor-pointer" onClick={onMenuClick} />
                         </div>
-                        {menuClick && <div className="flex md:hidden z-1 justify-center items-center gap-2 absolute w-[100px] max-h-[100px] right-[2%] top-[10%] shadow-lg flex-col">
-                            <p className="text-[#3E3E3E] text-[16px]">All</p>
-                            <p className="text-[#3E3E3E] text-[16px]">Asia</p>
-                            <p className="text-[#3E3E3E] text-[16px]">Europe</p>
+                        {menuClick && <div className="d-flex flex-column position-absolute bg-white shadow p-2" style={{ zIndex: 9999, right: '2%', top: '10%' }}>
+                            <p className="text-dark fs-6 mb-1">All</p>
+                            <p className="text-dark fs-6 mb-1">Asia</p>
+                            <p className="text-dark fs-6">Europe</p>
                         </div>}
                     </div>
-                    <div className="flex w-full justify-center items-center md:flex-row flex-col md:h-[40px] h-auto">
-                        <div className="md:w-[385px] w-full md:mt-[7px] mt-[2px] h-[2px] bg-[#3E3E3E] rounded"></div>
-                        <p className="text-[#3D3D3D] ml-[10px] text-[36px] font-bold">WELCOME</p>
-                        <div className="md:w-[385px] w-full md:mt-[40px] mt-[3px] md:ml-[10px] ml-[0px]  h-[2px] bg-[#3E3E3E] rounded"></div>
+                    <div className="d-flex flex-column flex-md-row w-100 justify-content-center align-items-center">
+                        <div className="bg-dark w-100 mt-md-custom" style={{ maxWidth: '385px', height: '2px' }}></div>
+                        <p className="text-dark mx-2 fs-1 fw-bold">WELCOME</p>
+                        <div className="bg-dark mt-md-5 mt-1 w-100" style={{ maxWidth: '385px', height: '2px' }}></div>
                     </div>
-                    <div className="flex md:flex-row flex-col-reverse w-full justify-between">
-                        <div className="relative md:w-[77%] w-[100%] flex justify-center mt-4">
+                    <div className="d-flex flex-column-reverse flex-md-row w-100 justify-content-between">
+                        <div className="position-relative w-100 w-md-75 d-flex justify-content-center mt-4">
                             {sliderSlides.map((v) => (
                                 v.id === slideIndex && (
-                                    <div key={v.id} className="relative w-full border-2 border-[#3D3D3D] max-h-[350px]">
-
-                                        <img src={v.img} className="w-full h-full object-contain rounded" />
-
-
-                                        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center text-black font-semibold text-lg bg-white/70 px-4 py-1 rounded">
+                                    <div key={v.id} className="position-relative w-100 border border-dark rounded overflow-hidden" style={{ maxHeight: '350px' }}>
+                                        <img src={v.img} className="w-100 h-100 object-fit-contain" />
+                                        <div className="position-absolute bottom-50 start-50 translate-middle text-center text-dark fw-semibold fs-5 bg-white bg-opacity-75 px-3 py-1 rounded">
                                             {v.title}
                                         </div>
-
-
-                                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
-
+                                        <div className="position-absolute bottom-0 start-50 translate-middle-x d-flex align-items-center gap-3 py-2">
                                             <FaArrowLeft
                                                 onClick={previousFunction}
-                                                className="text-black text-xl cursor-pointer hover:scale-110 transition"
+                                                className="text-dark fs-5 cursor-pointer"
                                             />
-
-
-                                            <div className="flex space-x-2">
+                                            <div className="d-flex gap-2">
                                                 {[1, 2, 3, 4].map((num) => (
                                                     <div
                                                         key={num}
                                                         onClick={() => handleDots(num)}
-                                                        className={`w-3 h-3 rounded-full cursor-pointer 
-                                                         ${slideIndex === num ? 'bg-black' : 'bg-gray-300'}`}
+                                                        className="rounded-circle"
+                                                        style={{ width: '12px', height: '12px', backgroundColor: slideIndex === num ? '#000' : '#ccc', cursor: 'pointer' }}
                                                     />
                                                 ))}
                                             </div>
-
-
                                             <FaArrowRight
                                                 onClick={nextFunction}
-                                                className="text-black text-xl cursor-pointer hover:scale-110 transition"
+                                                className="text-dark fs-5 cursor-pointer"
                                             />
                                         </div>
                                     </div>
                                 )
                             ))}
                         </div>
-                        <div className="md:w-[18%] w-[100%] md:ml-[20px] ml-0 mt-4">
+                        <div className="w-100 w-md-25 ms-md-3 mt-4">
                             {sliderSlides.map((v) => (
                                 v.id === slideIndex && (
-                                    <div key={v.id} className="relative w-full border-2 border-[#3D3D3D] h-[220px] max-h-[220px] md:h-[350px] md:max-h-[350px]">
-
-                                        <img src={v.img} className="w-full h-full object-contain rounded" />
-
-
-                                        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center text-black font-semibold text-lg bg-white/70 px-4 py-1 rounded">
+                                    <div key={v.id} className="position-relative w-100 border border-dark rounded overflow-hidden" style={{ height: '220px', maxHeight: '350px' }}>
+                                        <img src={v.img} className="w-100 h-100 object-fit-contain" />
+                                        <div className="position-absolute bottom-50 start-50 translate-middle text-center text-dark fw-semibold fs-5 bg-white bg-opacity-75 px-3 py-1 rounded">
                                             {v.title}
                                         </div>
-
-
-
                                     </div>
                                 )
                             ))}
@@ -140,13 +122,13 @@ const Home = () => {
                     </div>
 
                     {!isLoading ? <>
-                        <div className="grid mt-[20px] w-full gap-[10px] md:grid-cols-2 grid-cols-1">
-                            {visibleCountries.map((v) => {
+                        <div className="row g-3 mt-3 w-100">
+                            {visibleCountries.map((v, i) => {
                                 return (
-                                    <div className="w-full h-[130px] border-[2px] border-[#3E3E3E] shadow-2xl">
-                                        <div className="flex items-center">
-                                            <img src={v.flag} className="h-28 w-28 p-[10px]" />
-                                            <div className="flex flex-col">
+                                    <div className="col-12 col-md-6" key={i}>
+                                        <div className="border border-dark shadow d-flex align-items-center p-2">
+                                            <img src={v.flag} className="me-3" style={{ height: '100px', width: '100px', padding: '10px' }} />
+                                            <div className="d-flex flex-column">
                                                 <p>{v.name}</p>
                                                 <p>{v.region}</p>
                                             </div>
@@ -155,16 +137,16 @@ const Home = () => {
                                 )
                             })}
                         </div></> :
-                        <div className="flex w-full mt-[20px] justify-center items-center">Loading ....</div>}
+                        <div className="d-flex w-100 mt-4 justify-content-center align-items-center">Loading ....</div>}
 
-                    <button onClick={() => dispatch(loadMore())} className="mt-4 p-2 w-[146px] h-[12%] bg-[#3D3D3D] text-white">
+                    <button onClick={() => dispatch(loadMore())} className="mt-4 px-4 py-2 bg-dark text-white border-0">
                         Load More
                     </button>
 
-                    <div className="flex flex-col my-[20px] justify-center items-center">
-                        <img src={bottomImg} />
-                        <p className="text-[#3D3D3D] mt-[25px] font-bold text-[13px]">Example@email.com </p>
-                        <p className="text-[#3D3D3D] mt-[8px] font-bold text-[13px]">Copyright © 2020 Name. All rights reserved.</p>
+                    <div className="d-flex flex-column my-4 justify-content-center align-items-center">
+                        <img src={bottomImg} className="img-fluid" />
+                        <p className="text-dark mt-3 fw-bold small">Example@email.com</p>
+                        <p className="text-dark mt-2 fw-bold small">Copyright © 2020 Name. All rights reserved.</p>
                     </div>
 
                 </div>

@@ -74,43 +74,52 @@ const Home = () => {
                         <p className="text-dark mx-2 fs-1 fw-bold">WELCOME</p>
                         <div className="bg-dark mt-md-5 mt-1 w-100" style={{ maxWidth: '385px', height: '2px' }}></div>
                     </div>
-                    <div className="d-flex flex-column-reverse flex-md-row w-100 justify-content-between">
-                        <div className="position-relative w-100 w-md-75 d-flex justify-content-center mt-4">
+                    <div className="d-flex flex-column-reverse flex-md-row w-100 justify-content-between align-items-stretch">
+                       
+                        <div className="d-flex align-items-stretch left-section-custom-cls">
                             {sliderSlides.map((v) => (
                                 v.id === slideIndex && (
-                                    <div key={v.id} className="position-relative w-100 border border-dark rounded overflow-hidden" style={{ maxHeight: '350px' }}>
+                                    <div
+                                        key={v.id}
+                                        className="position-relative border border-dark rounded overflow-hidden w-100"
+                                        style={{ height: '350px' }}
+                                    >
                                         <img src={v.img} className="w-100 h-100 object-fit-contain" />
                                         <div className="position-absolute bottom-50 start-50 translate-middle text-center text-dark fw-semibold fs-5 bg-white bg-opacity-75 px-3 py-1 rounded">
                                             {v.title}
                                         </div>
                                         <div className="position-absolute bottom-0 start-50 translate-middle-x d-flex align-items-center gap-3 py-2">
-                                            <FaArrowLeft
-                                                onClick={previousFunction}
-                                                className="text-dark fs-5 cursor-pointer"
-                                            />
+                                            <FaArrowLeft onClick={previousFunction} className="text-dark fs-5 cursor-pointer" />
                                             <div className="d-flex gap-2">
                                                 {[1, 2, 3, 4].map((num) => (
-                                                    <div
-                                                        key={num}
-                                                        onClick={() => handleDots(num)}
-                                                        className="rounded-circle"
-                                                        style={{ width: '12px', height: '12px', backgroundColor: slideIndex === num ? '#000' : '#ccc', cursor: 'pointer' }}
+                                                    <div key={num} onClick={() => handleDots(num)} className="rounded-circle"
+                                                        style={{
+                                                            width: '12px',
+                                                            height: '12px',
+                                                            backgroundColor: slideIndex === num ? '#000' : '#ccc',
+                                                            cursor: 'pointer',
+                                                        }}
                                                     />
                                                 ))}
                                             </div>
-                                            <FaArrowRight
-                                                onClick={nextFunction}
-                                                className="text-dark fs-5 cursor-pointer"
-                                            />
+                                            <FaArrowRight onClick={nextFunction} className="text-dark fs-5 cursor-pointer" />
                                         </div>
                                     </div>
                                 )
                             ))}
                         </div>
-                        <div className="w-100 w-md-25 ms-md-3 mt-4">
+
+                       
+                        <div
+                            className="d-flex align-items-stretch right-section-custom-cls"
+                        >
                             {sliderSlides.map((v) => (
                                 v.id === slideIndex && (
-                                    <div key={v.id} className="position-relative w-100 border border-dark rounded overflow-hidden" style={{ height: '220px', maxHeight: '350px' }}>
+                                    <div
+                                        key={v.id}
+                                        className="position-relative border border-dark rounded overflow-hidden w-100 custom-hegh"
+                                        
+                                    >
                                         <img src={v.img} className="w-100 h-100 object-fit-contain" />
                                         <div className="position-absolute bottom-50 start-50 translate-middle text-center text-dark fw-semibold fs-5 bg-white bg-opacity-75 px-3 py-1 rounded">
                                             {v.title}
@@ -120,6 +129,8 @@ const Home = () => {
                             ))}
                         </div>
                     </div>
+
+
 
                     {!isLoading ? <>
                         <div className="row g-3 mt-3 w-100">

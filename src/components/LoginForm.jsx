@@ -53,7 +53,6 @@ const LoginForm = () => {
                             New user? <span style={{ color: '#587FFF' }} className="ms-1">Create an account</span>
                         </p>
 
-                        {/* Email input */}
                         <input
                             type="text"
                             placeholder="Username or email"
@@ -68,7 +67,6 @@ const LoginForm = () => {
                             </small>
                         )}
 
-                        {/* Password input */}
                         <input
                             type="password"
                             placeholder="Password"
